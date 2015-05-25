@@ -57,7 +57,7 @@ angular.module('slick', []).directive('slick', [
           return $timeout(function () {
             var slider;
             slider = $(element);
-            slider.unslick();
+            slider.slick('unslick');
             slider.find('.slick-list').remove();
             return slider;
           });
@@ -126,7 +126,10 @@ angular.module('slick', []).directive('slick', [
             });
             slider.on('afterChange', function (event, slick, currentSlide, nextSlide) {
               if (scope.onAfterChange) {
-                scope.onAfterChange();
+                scope.onAfterChange({
+                  'selection': currentSlide,
+                  'slick': slick
+                });
               }
               if (currentIndex != null) {
                 return scope.$apply(function () {
