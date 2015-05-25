@@ -124,7 +124,7 @@ angular.module('slick', [])
               )
 
           slider.on 'beforeChange', (event, slick, currentSlide, nextSlide) ->
-            scope.onBeforeChange({ "selection": currentSlide, "next": nextSlide, "slick": slick }) if scope.onAfterChange
+            scope.onBeforeChange({ "selection": currentSlide, "next": nextSlide, "slick": slick }) if scope.onBeforeChange
 
           scope.$watch("currentIndex", (newVal, oldVal) ->
             if currentIndex? and newVal? and newVal != currentIndex
