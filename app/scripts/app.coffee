@@ -115,7 +115,7 @@ angular.module('slick', [])
               sl.slideHandler(currentIndex)
 
           slider.on 'afterChange', (event, slick, currentSlide, nextSlide) ->
-            scope.onAfterChange({ "selection": currentSlide, "slick": slick }) if scope.onAfterChange
+#            scope.onAfterChange({ "selection": currentSlide, "slick": slick }) if scope.onAfterChange
 
             if currentIndex?
               scope.$apply(->
@@ -124,7 +124,7 @@ angular.module('slick', [])
               )
 
           slider.on 'beforeChange', (event, slick, currentSlide, nextSlide) ->
-            scope.onBeforeChange({ "selection": currentSlide, "next": nextSlide, "slick": slick }) if scope.onBeforeChange
+            scope.onAfterChange({ "selection": nextSlide, "slick": slick }) if scope.onAfterChange
 
           scope.$watch("currentIndex", (newVal, oldVal) ->
             if currentIndex? and newVal? and newVal != currentIndex
