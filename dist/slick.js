@@ -124,12 +124,6 @@ angular.module('slick', []).directive('slick', [
               }
             });
             slider.on('afterChange', function (event, slick, currentSlide, nextSlide) {
-              if (scope.onAfterChange) {
-                scope.onAfterChange({
-                  'selection': currentSlide,
-                  'slick': slick
-                });
-              }
               if (currentIndex != null) {
                 return scope.$apply(function () {
                   currentIndex = currentSlide;
@@ -138,10 +132,9 @@ angular.module('slick', []).directive('slick', [
               }
             });
             slider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-              if (scope.onBeforeChange) {
-                return scope.onBeforeChange({
-                  'selection': currentSlide,
-                  'next': nextSlide,
+              if (scope.onAfterChange) {
+                return scope.onAfterChange({
+                  'selection': nextSlide,
                   'slick': slick
                 });
               }
