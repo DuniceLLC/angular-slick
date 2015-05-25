@@ -88,7 +88,7 @@ angular.module('slick', [])
             infinite: scope.infinite isnt "false"
             initialSlide:scope.initialSlide or 0
             lazyLoad: scope.lazyLoad or "ondemand"
-            beforeChange: if attrs.onBeforeChange then scope.onBeforeChange else undefined
+#            beforeChange: if attrs.onBeforeChange then scope.onBeforeChange else undefined
             onReInit: if attrs.onReInit then scope.onReInit else undefined
             onSetPosition: if attrs.onSetPosition then scope.onSetPosition else undefined
             pauseOnHover: scope.pauseOnHover isnt "false"
@@ -122,6 +122,9 @@ angular.module('slick', [])
                 currentIndex = currentSlide
                 scope.currentIndex = currentSlide
               )
+
+          slider.on 'beforeChange', (event, slick, currentSlide, nextSlide) ->
+            scope.onBeforeChange({ "selection": currentSlide, "next": nextSlide, "slick": slick }) if scope.onAfterChange
 
           scope.$watch("currentIndex", (newVal, oldVal) ->
             if currentIndex? and newVal? and newVal != currentIndex
